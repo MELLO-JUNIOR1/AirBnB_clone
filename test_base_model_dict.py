@@ -1,32 +1,30 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 
-def main():
-    my_model = BaseModel()
-    my_model.name = "My_First_Model"
-    my_model.my_number = 89
+def print_model_info(model):
+print(f"ID: {model.id}")
+print(model)
+print(f"Type of created_at: {type(model.created_at)}")
 
-    print(my_model.id)
-    print(my_model)
-    print(type(my_model.created_at))
-    print("--")
+my_model = BaseModel()
+my_model.name = "Holberton"
+my_model.my_number = 89
 
-    my_model_json = my_model.to_dict()
-    print(my_model_json)
-    print("JSON of my_model:")
-    for key in my_model_json.keys():
-        print("\t{}: ({}) - {}".format(key,
-              type(my_model_json[key]), my_model_json[key]))
+# Print information about the original model
+print_model_info(my_model)
 
-    print("--")
+print("--")
 
-    my_new_model = BaseModel(**my_model_json)
-    print(my_new_model.id)
-    print(my_new_model)
-    print(type(my_new_model.created_at))
+my_model_json = my_model.to_dict()
+print("JSON of my_model:")
+for key, value in my_model_json.items():
+print(f"\t{key}: ({type(value)}) - {value}")
 
-    print("--")
-    print(my_model is my_new_model)
+print("--")
 
-if __name__ == "__main__":
-    main()
+# Create a new model using the JSON representation
+my_new_model = BaseModel(**my_model_json)
+print_model_info(my_new_model)
+
+print("--")
+print(f"Is my_model the same as my_new_model? {my_model is my_new_model}")
