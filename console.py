@@ -22,19 +22,27 @@ CLASSES = {"BaseModel": BaseModel, "User": User,
 
 
 class HBNBCommand(cmd.Cmd):
-    '''Entry point of the command interpreter'''
+    '''
+    Entry point of the command interprete
+    r'''
     prompt = "(hbnb) "
 
     def emptyline(self):
-        """ Ignore empty spaces """
+        """ 
+        Ignore empty spaces
+        """
         pass
 
     def do_quit(self, arg):
-        ''' Quit command to exit the program '''
+        ''' 
+        Quit command to exit the progra
+        m '''
         return True
 
     def do_EOF(self, arg):
-        ''' Exit the program '''
+        ''' 
+        Exit the program
+        '''
         print()
         return True
 
