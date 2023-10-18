@@ -9,11 +9,11 @@ The AirBnB clone project starts now until… the end of the first year. The goal
 
 ## Table of contents :clipboard:
 
- - [Description](https://github.com/robpalacios1/AirBnB_clone/#description-triangular_ruler)
- - [Installation](https://github.com/robpalacios1/AirBnB_clone/#installation-floppy_disk)
- - [File description](https://github.com/robpalacios1/AirBnB_clone/blob/master/README.md#file-description-file_folder)
- - [Example](https://github.com/robpalacios1/AirBnB_clone#example-computer)
- - [Contributors](https://github.com/robpalacios1/AirBnB_clone#contributors)
+ - [Description](https://github.com/MELLO-JUNIOR1/AirBnB_clone/#description-triangular_ruler)
+ - [Installation](https://github.com/MELLO-JUNIOR1/AirBnB_clone/#installation-floppy_disk)
+ - [File description](https://github.com/MELLO-JUNIOR1/AirBnB_clone/blob/master/README.md#file-description-file_folder)
+ - [Example](https://github.com/MELLO-JUNIOR1/AirBnB_clone#example-computer)
+ - [Contributors](https://github.com/MELLO-JUNIOR1/AirBnB_clone#contributors)
 
 ## Description :triangular_ruler:
 
@@ -34,7 +34,7 @@ A command interpreter to manage our Airbnb clone objects:
  </p>
 
 ## Installation :floppy_disk:
- - Clone this repository: `git clone "https://github.com/robpalacios1/AirBnB_clone.git"`
+ - Clone this repository: `git clone "https://github.com/MELLO-JUNIOR1/AirBnB_clone.git"`
  - Access AirBnb directory: `cd AirBnB_clone`
  - Run hbnb(interactively): `./console` and enter command
  - Run hbnb(non-interactively): `echo "<command>" | ./console.py`
