@@ -1,14 +1,12 @@
-#!/usr/bin/python3
-""" New class User that inherits from BaseModel"""
-
-
+#!/usr/bin/env python3
+"""Module for a class called User"""
 from models.base_model import BaseModel
 
 
 class User(BaseModel):
-""" New Class inherits from BaseModel"""
+    """a class User that inherits from BaseModel"""
 
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+    email = ''
+    password = ''
+    first_name = ''
+    last_name = ''

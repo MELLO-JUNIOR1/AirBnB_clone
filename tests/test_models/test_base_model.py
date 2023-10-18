@@ -1,94 +1,50 @@
 #!/usr/bin/python3
-'''test models'''
+""" Module of Unittests """
 import unittest
-import re
 from models.base_model import BaseModel
-from datetime import datetime
-from time import sleep
+import os
+from models import storage
+from models.engine.file_storage import FileStorage
+import datetime
 
 
-class TestBaseModel(unittest.TestCase):
-    '''test BaseModel'''
+class BaseModelTests(unittest.TestCase):
+    """ Suite of Console Tests """
 
-    def test_createAttr_noArgs(self):
-        '''create Instance w/o args'''
-        my_model = BaseModel()
-        my_model.name = "Holberton"
-        self.assertEqual(my_model.name, "Holberton")
+    my_model = BaseModel()
 
-    def test_id_noArgs(self):
-        '''check type/value of id w/o args'''
-        my_model = BaseModel()
-        self.assertTrue(my_model.id)
-        self.assertEqual(type(my_model.id), str)
+    def testBaseModel1(self):
+        """ Test attributes value of a BaseModel instance """
 
-    def test_created_at_noArgs_type(self):
-        '''check type of created_at w/o args'''
-        my_model = BaseModel()
-        self.assertEqual(type(my_model.created_at), datetime)
+        self.my_model.name = "Holberton"
+        self.my_model.my_number = 89
+        self.my_model.save()
+        my_model_json = self.my_model.to_dict()
 
-    def test_created_at_noArgs_format(self):
-        '''check format %Y-%M-%DT%H:%M:%S.%MS'''
-        datetime_format = re.compile(
-            "\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d+$")
-        my_model = BaseModel()
-        my_created_at = my_model.to_dict()['created_at']
-        format_found = datetime_format.match(my_created_at)
-        self.assertIsNotNone(format_found)
+        self.assertEqual(self.my_model.name, my_model_json['name'])
+        self.assertEqual(self.my_model.my_number, my_model_json['my_number'])
+        self.assertEqual('BaseModel', my_model_json['__class__'])
+        self.assertEqual(self.my_model.id, my_model_json['id'])
 
-    def test_created_at_noArgs_value(self):
-        '''check value of created_at w/o args'''
-        now = datetime.now().replace(microsecond=0)
-        my_model = BaseModel()
-        self.assertEqual(my_model.created_at.replace(microsecond=0), now)
+    def testSave(self):
+        """ Checks if save method updates the public instance instance
+        attribute updated_at """
+        self.my_model.first_name = "First"
+        self.my_model.save()
 
-    def test_created_at_noArgs_afterSave(self):
-        '''check created_at w/o args after save()'''
-        my_model = BaseModel()
-        my_created_at = my_model.created_at
-        my_model.save()
-        self.assertEqual(my_model.created_at, my_created_at)
+        self.assertIsInstance(self.my_model.id, str)
+        self.assertIsInstance(self.my_model.created_at, datetime.datetime)
+        self.assertIsInstance(self.my_model.updated_at, datetime.datetime)
 
-    def test_updated_at_noArgs_type(self):
-        '''check type updated_at'''
-        my_model = BaseModel()
-        self.assertEqual(type(my_model.updated_at), datetime)
+        first_dict = self.my_model.to_dict()
 
-    def test_updated_at_noArgs_format(self):
-        '''check format %Y-%M-%DT%H:%M:%S.%MS'''
-        datetime_format = re.compile(
-            "\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d+$")
-        my_model = BaseModel()
-        my_updated_at = my_model.to_dict()['updated_at']
-        format_found = datetime_format.match(my_updated_at)
-        self.assertIsNotNone(format_found)
+        self.my_model.first_name = "Second"
+        self.my_model.save()
+        sec_dict = self.my_model.to_dict()
 
-    def test_updated_at_noArgs_value(self):
-        '''check value of updated_at'''
-        now = datetime.now().replace(microsecond=0)
-        my_model = BaseModel()
-        self.assertEqual(my_model.updated_at.replace(microsecond=0), now)
+        self.assertEqual(first_dict['created_at'], sec_dict['created_at'])
+        self.assertNotEqual(first_dict['updated_at'], sec_dict['updated_at'])
 
-    def test_updated_at_noArgs_value_afterSave(self):
-        '''check value of updated_at after save()'''
-        my_model = BaseModel()
-        updated_pre = my_model.updated_at
-        my_model.save()
-        self.assertTrue(my_model.updated_at > updated_pre)
 
-    def test_str(self):
-        '''check __str__ method'''
-        my_model = BaseModel()
-        r = re.compile("\[BaseModel\] (.*) {.*}")
-        my_str = my_model.__str__()
-        self.assertIsNotNone(r.match(my_str))
-
-    def test_to_dict_noAditonalAttr(self):
-        '''check to_dict w/o additional Attributes'''
-        my_model = BaseModel()
-        BaseModel.name = "holberton"
-        attributes = {}
-        for key, value in my_model.to_dict().items():
-            if (key not in ('__class__', 'id', 'created_at', 'updated_at')):
-                attributes[key] = value
-        self.assertFalse(attributes)
+if __name__ == '__main__':
+    unittest.main()

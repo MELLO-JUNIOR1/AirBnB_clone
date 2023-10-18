@@ -1,10 +1,9 @@
-#!/usr/bin/python3
-""" Class state that inhertis from BaseModel """
-
+#!/usr/bin/env python3
+"""Module for a class called State"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-""" Public class attribute from state """
+    """A class State that inherits from BaseModel class"""
 
-    name = ""
+    name = ''

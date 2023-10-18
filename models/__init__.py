@@ -1,7 +1,4 @@
-#!/usr/bin/python3
-""" Unique FileStorage instance for the application """
+#!/usr/bin/env python3
 from models.engine.file_storage import FileStorage
-
-''' Variable instance of FileStorage'''
 storage = FileStorage()
 storage.reload()

@@ -1,11 +1,10 @@
-#!/usr/bin/python3
-""" Class city that inhertis from BaseModel """
-
+#!/usr/bin/env python3
+"""Module for a class called City"""
 from models.base_model import BaseModel
 
 
 class City(BaseModel):
-    """ Public class attributes from city """
+    """A class City that inherits from BaseModel class"""
 
-    state_id = ""
-    name = ""
+    state_id = ''
+    name = ''

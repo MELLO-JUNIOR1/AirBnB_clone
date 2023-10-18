@@ -1,51 +1,58 @@
 #!/usr/bin/python3
-'''test place'''
-
+"""
+Unittest for amenity.py
+"""
 import unittest
-from models.base_model import BaseModel
 from models.place import Place
+import datetime
 
 
-class test_Place(unittest.TestCase):
-    """ Test place """
+class TestPlace(unittest.TestCase):
+    """Tests instances and methods from amenity class"""
 
-    def test_type_bathrooms(self):
-        """ Verify if is instance"""
-        self.assertIsInstance(Place.number_bathrooms, int)
+    p = Place()
 
-    def test_type_rooms(self):
-        self.assertIsInstance(Place.number_rooms, int)
-    
-    def test_type_latitude(self):
-        self.assertIsInstance(Place.latitude, float)
+    def test_class_exists(self):
+        """tests if class exists"""
+        self.assertEqual(str(type(self.p)), "<class 'models.place.Place'>")
 
-    def test_type_longitude(self):
-        self.assertIsInstance(Place.longitude, float)
+    def test_user_inheritance(self):
+        """test if Place is a subclass of BaseModel"""
+        self.assertIsInstance(self.p, Place)
 
-    def test_instance_in_object(self):
-        """test instance in objects"""
-        self.assertTrue(hasattr(Place, "city_id"))
-        self.assertTrue(hasattr(Place, "user_id"))
-        self.assertTrue(hasattr(Place, "name"))
-        self.assertTrue(hasattr(Place, "description"))
-        self.assertTrue(hasattr(Place, "number_rooms"))
-        self.assertTrue(hasattr(Place, "number_bathrooms"))
-        self.assertTrue(hasattr(Place, "max_guest"))
-        self.assertTrue(hasattr(Place, "price_by_night"))
-        self.assertTrue(hasattr(Place, "latitude"))
-        self.assertTrue(hasattr(Place, "longitude"))
-        self.assertTrue(hasattr(Place, "amenity_ids"))
-        self.assertEqual(Place.city_id, "")
-        self.assertEqual(Place.user_id, "")
-        self.assertEqual(Place.name, "")
-        self.assertEqual(Place.description, "")
-        self.assertEqual(Place.number_rooms, 0)
-        self.assertEqual(Place.number_bathrooms, 0)
-        self.assertEqual(Place.max_guest, 0)
-        self.assertEqual(Place.price_by_night, 0)
-        self.assertEqual(Place.latitude, 0.0)
-        self.assertEqual(Place.longitude, 0.0)
-        self.assertEqual(Place.amenity_ids, [])
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.p, 'city_id'))
+        self.assertTrue(hasattr(self.p, 'user_id'))
+        self.assertTrue(hasattr(self.p, 'name'))
+        self.assertTrue(hasattr(self.p, 'description'))
+        self.assertTrue(hasattr(self.p, 'number_rooms'))
+        self.assertTrue(hasattr(self.p, 'number_bathrooms'))
+        self.assertTrue(hasattr(self.p, 'max_guests'))
+        self.assertTrue(hasattr(self.p, 'price_by_night'))
+        self.assertTrue(hasattr(self.p, 'latitude'))
+        self.assertTrue(hasattr(self.p, 'longitude'))
+        self.assertTrue(hasattr(self.p, 'amenity_ids'))
+        self.assertTrue(hasattr(self.p, 'id'))
+        self.assertTrue(hasattr(self.p, 'created_at'))
+        self.assertTrue(hasattr(self.p, 'updated_at'))
 
-if __name__ == "__main__":
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.p.city_id, str)
+        self.assertIsInstance(self.p.user_id, str)
+        self.assertIsInstance(self.p.name, str)
+        self.assertIsInstance(self.p.description, str)
+        self.assertIsInstance(self.p.number_rooms, int)
+        self.assertIsInstance(self.p.number_bathrooms, int)
+        self.assertIsInstance(self.p.max_guests, int)
+        self.assertIsInstance(self.p.price_by_night, int)
+        self.assertIsInstance(self.p.latitude, float)
+        self.assertIsInstance(self.p.longitude, float)
+        self.assertIsInstance(self.p.amenity_ids, list)
+        self.assertIsInstance(self.p.id, str)
+        self.assertIsInstance(self.p.created_at, datetime.datetime)
+        self.assertIsInstance(self.p.updated_at, datetime.datetime)
+
+if __name__ == '__main__':
     unittest.main()

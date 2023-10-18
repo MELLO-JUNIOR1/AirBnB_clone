@@ -1,10 +1,9 @@
-#!/usr/bin/python3
-""" Class amenity that inherits from BaseModel """
-
+#!/usr/bin/env python3
+"""Module for a class called Amenity"""
 from models.base_model import BaseModel
 
 
 class Amenity(BaseModel):
-    """ Public class attribute from amenity """
+    """A class Amenity that inherits from BaseModel class"""
 
-    name = ""
+    name = ''

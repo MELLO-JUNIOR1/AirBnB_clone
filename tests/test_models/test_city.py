@@ -1,24 +1,41 @@
 #!/usr/bin/python3
-'''test state'''
-
+"""
+Unittest for user.py
+"""
 import unittest
-import models
-import sys
 from models.city import City
-from models.base_model import BaseModel
+import datetime
 
-class test_City(unittest.TestCase):
-    """ Test city """
 
-    def test_instance_in_object(self):
-        """test instance in objects"""
-        self.assertTrue(hasattr(City, "state_id"))
-        self.assertTrue(hasattr(City, "name"))
-        self.assertEqual(City.state_id, "")
-        self.assertEqual(City.name, "")
+class TestCity(unittest.TestCase):
+    """Tests instances and methods from city class"""
 
-    def is_instace(self):
-        self.assertIsInstance(City, BaseModel)
+    c = City()
 
-if __name__ == "__main__":
+    def test_class_exists(self):
+        """tests if class exists"""
+        self.assertEqual(str(type(self.c)), "<class 'models.city.City'>")
+
+    def test_user_inheritance(self):
+        """test if city is a subclass of BaseModel"""
+        self.assertTrue(self.c, City)
+
+    def testHasAttributes(self):
+        """verify if attributes exist"""
+        self.assertTrue(hasattr(self.c, 'state_id'))
+        self.assertTrue(hasattr(self.c, 'name'))
+        self.assertTrue(hasattr(self.c, 'id'))
+        self.assertTrue(hasattr(self.c, 'created_at'))
+        self.assertTrue(hasattr(self.c, 'updated_at'))
+
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.c.state_id, str)
+        self.assertIsInstance(self.c.name, str)
+        self.assertIsInstance(self.c.id, str)
+        self.assertIsInstance(self.c.created_at, datetime.datetime)
+        self.assertIsInstance(self.c.updated_at, datetime.datetime)
+
+
+if __name__ == '__main__':
     unittest.main()

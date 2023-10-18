@@ -1,19 +1,18 @@
-#!/usr/bin/python3
-""" State class that inherits from BaseModel """
-
+#!/usr/bin/env python3
+"""Module for a class called Place"""
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
-    """ Class attributes from place  """
+    """A class Place that inherits from BaseModel class"""
 
-    city_id = ""
-    user_id = ""
-    name = ""
-    description = ""
+    city_id = ''
+    user_id = ''
+    name = ''
+    description = ''
     number_rooms = 0
     number_bathrooms = 0
-    max_guest = 0
+    max_guests = 0
     price_by_night = 0
     latitude = 0.0
     longitude = 0.0
