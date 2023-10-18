@@ -3,9 +3,8 @@
 
 from models.base_model import BaseModel
 
-
 class Review(BaseModel):
-    """ Public class attributes from Review """
+""" Public class attributes from Review """
 
     place_id = ""
     user_id = ""

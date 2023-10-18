@@ -1,33 +1,32 @@
 #!/usr/bin/python3
 '''test models'''
 import unittest
-import re
-from models.base_model import BaseModel
-from datetime import datetime
 from time import sleep
+import re
+from datetime import datetime
+from models.base_model import BaseModel
 
-
-class TestBaseModel(unittest.TestCase):
+class TestBaseModel( unittest.TestCase ):
     '''test BaseModel'''
 
-    def test_createAttr_noArgs(self):
+    def test_createAttr_noArgs( self ):
         '''create Instance w/o args'''
         my_model = BaseModel()
         my_model.name = "Holberton"
         self.assertEqual(my_model.name, "Holberton")
 
-    def test_id_noArgs(self):
+    def test_id_noArgs( self ):
         '''check type/value of id w/o args'''
         my_model = BaseModel()
-        self.assertTrue(my_model.id)
-        self.assertEqual(type(my_model.id), str)
+        self.assertTrue( my_model.id )
+        self.assertEqual( type(my_model.id), str )
 
-    def test_created_at_noArgs_type(self):
+    def test_created_at_noArgs_type( self ):
         '''check type of created_at w/o args'''
         my_model = BaseModel()
-        self.assertEqual(type(my_model.created_at), datetime)
+        self.assertEqual( type(my_model.created_at), datetime )
 
-    def test_created_at_noArgs_format(self):
+    def test_created_at_noArgs_format( self ):
         '''check format %Y-%M-%DT%H:%M:%S.%MS'''
         datetime_format = re.compile(
             "\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d+$")
@@ -36,13 +35,13 @@ class TestBaseModel(unittest.TestCase):
         format_found = datetime_format.match(my_created_at)
         self.assertIsNotNone(format_found)
 
-    def test_created_at_noArgs_value(self):
+    def test_created_at_noArgs_value( self ):
         '''check value of created_at w/o args'''
-        now = datetime.now().replace(microsecond=0)
+        now = datetime.now().replace( microsecond=0 )
         my_model = BaseModel()
-        self.assertEqual(my_model.created_at.replace(microsecond=0), now)
+        self.assertEqual( my_model.created_at.replace(microsecond=0), now )
 
-    def test_created_at_noArgs_afterSave(self):
+    def test_created_at_noArgs_afterSave( self ):
         '''check created_at w/o args after save()'''
         my_model = BaseModel()
         my_created_at = my_model.created_at
@@ -63,18 +62,18 @@ class TestBaseModel(unittest.TestCase):
         format_found = datetime_format.match(my_updated_at)
         self.assertIsNotNone(format_found)
 
-    def test_updated_at_noArgs_value(self):
+    def test_updated_at_noArgs_value( self ):
         '''check value of updated_at'''
-        now = datetime.now().replace(microsecond=0)
+        now = datetime.now().replace( microsecond=0 )
         my_model = BaseModel()
-        self.assertEqual(my_model.updated_at.replace(microsecond=0), now)
+        self.assertEqual( my_model.updated_at.replace(microsecond=0), now )
 
     def test_updated_at_noArgs_value_afterSave(self):
         '''check value of updated_at after save()'''
         my_model = BaseModel()
         updated_pre = my_model.updated_at
         my_model.save()
-        self.assertTrue(my_model.updated_at > updated_pre)
+        self.assertTrue( my_model.updated_at > updated_pre )
 
     def test_str(self):
         '''check __str__ method'''
@@ -83,7 +82,7 @@ class TestBaseModel(unittest.TestCase):
         my_str = my_model.__str__()
         self.assertIsNotNone(r.match(my_str))
 
-    def test_to_dict_noAditonalAttr(self):
+    def test_to_dict_noAditonalAttr( self ):
         '''check to_dict w/o additional Attributes'''
         my_model = BaseModel()
         BaseModel.name = "holberton"
