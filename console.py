@@ -6,13 +6,14 @@ import cmd
 import json
 import shlex
 from models.base_model import BaseModel
-from models.user import User
-from models.state import State
-from models.city import City
 from models.engine.file_storage import FileStorage
-from models.review import Review
-from models.amenity import Amenity
+from models.user import User
+from models.city import City
 from models.place import Place
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
+
 
 """ Classes """
 CLASSES = {"BaseModel": BaseModel, "User": User,
@@ -20,32 +21,32 @@ CLASSES = {"BaseModel": BaseModel, "User": User,
            "State": State, "Amenity": Amenity}
 
 
-class HBNBCommand( cmd.Cmd ):
+class HBNBCommand(cmd.Cmd):
     '''
     Entry point of the command interprete
     r'''
     prompt = "(hbnb) "
 
-    def emptyline( self ):
+    def emptyline(self):
         """ 
         Ignore empty spaces
         """
         pass
 
-    def do_quit( self, arg ):
+    def do_quit(self, arg):
         ''' 
         Quit command to exit the progra
         m '''
         return True
 
-    def do_EOF( self, arg ):
+    def do_EOF(self, arg):
         ''' 
         Exit the program
         '''
         print()
         return True
 
-    def do_create( self, arg ):
+    def do_create(self, arg):
         '''Creates a new instance of BaseModel'''
         if len(arg) < 1:
             print("** class name missing **")
@@ -65,11 +66,11 @@ class HBNBCommand( cmd.Cmd ):
             print("** class doesn't exist **")
             return False
 
-    def do_show( self, arg ):
+    def do_show(self, arg):
         '''Prints the string representation of an instance'''
 
         split_arg = arg.split()
-        if len( split_arg ) < 1:
+        if len(split_arg) < 1:
             print("** class name missing **")
             return False
 
@@ -77,7 +78,7 @@ class HBNBCommand( cmd.Cmd ):
             print("** class doesn't exist **")
             return False
 
-        if len( split_arg ) == 1:
+        if len(split_arg) == 1:
             print("** instance id missing **")
             return False
 
@@ -90,17 +91,17 @@ class HBNBCommand( cmd.Cmd ):
         if key not in data_storage.keys():
             print("** no instance found **")
             return False
-        print( data_storage[key] )
+        print(data_storage[key])
         # print the data saved it in the new instance created
 
-    def do_destroy( self, arg ):
+    def do_destroy(self, arg):
         '''Deletes an instance based on the class name and id'''
         split_arg = arg.split()
-        if len( split_arg ) == 0:
+        if len(split_arg) == 0:
             print("** class name missing **")
             return False
 
-        if len( split_arg ) == 1:
+        if len(split_arg) == 1:
             print("** instance id missing **")
             return False
 
@@ -142,7 +143,7 @@ class HBNBCommand( cmd.Cmd ):
                     all_data.append(obj.__str__())
         print(all_data)
 
-    def do_update( self, arg ):
+    def do_update(self, arg):
         """ Update specific attribute of a class instance of
         a given id Usage:
         update <class name> <id> <attribute name> "<attribute value>"
@@ -157,15 +158,15 @@ class HBNBCommand( cmd.Cmd ):
             print("** class doesn't exist **")
             return False
 
-        if len( arg_split ) == 1:
+        if len(arg_split) == 1:
             print("** instance id missing **")
             return False
 
-        if len( arg_split ) == 2:
+        if len(arg_split) == 2:
             print("** attribute name missing **")
             return False
 
-        if len( arg_split ) == 3:
+        if len(arg_split) == 3:
             print("** value missing **")
             return False
 
@@ -181,7 +182,7 @@ class HBNBCommand( cmd.Cmd ):
                 print("** no instance found **")
                 return False
 
-    def count( self, arg ):
+    def count(self, arg):
         ''' Count instances of a class '''
         counter = 0
         args_n = arg.split()

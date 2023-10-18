@@ -2,6 +2,6 @@
 """ Unique FileStorage instance for the application """
 from models.engine.file_storage import FileStorage
 
-''' FileStorage instance in a variable'''
+''' Variable instance of FileStorage'''
 storage = FileStorage()
 storage.reload()
